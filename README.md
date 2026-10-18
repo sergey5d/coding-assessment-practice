@@ -7,15 +7,16 @@ A collection of practice exercises modeled on the kinds of coding assessments us
 - **Nothing here is secret.** Every exercise is based on publicly available knowledge about common interview themes. None of it reproduces confidential interview material or an official question from any company.
 - **The code is AI-generated** and comes with no guarantee that everything is correct. The specs, tests and scripts have been checked, but treat them as practice material and not as an authoritative answer key. If a test and a spec disagree, trust your own reasoning.
 
-## How to use these exercises
+## The approach matters more than the exercises
 
-The goal is not to memorize solutions. It is to have already solved the problem once yourself, so that when a similar question comes up, you know the right approach and have practiced applying it under time pressure.
+The most important thing in this repository is not the examples. It is the way of preparing: **the company, its likely problems, and your own work.** The exercises here are just samples of that process.
 
 1. **Research the company.** Find out what its assessment looks like: the format, the time limit, the language, and the topics it tends to cover.
-2. **Code the solution yourself.** Pick a matching exercise, start a timer and work through it step by step without looking ahead. Each exercise ships with an empty stub and tests only; no solutions are included.
-3. **Train the approach, not the answer.** Afterwards, review what slowed you down and which modeling decisions mattered, then repeat with another exercise.
+2. **Work out the likely problems.** Collect the problem types that come up for that company and role. If an exercise here matches, use it. If not, ask an AI assistant to generate one in the same shape: a spec split into steps, a starter stub and tests, with no solution.
+3. **Do the work yourself.** Start a timer and solve it step by step without looking ahead or asking AI for the answer. The goal is not to memorize a solution, but to have solved the problem once yourself, so that when a similar question comes up you already know the right approach and have practiced applying it under time pressure.
+4. **Review and repeat.** Note what slowed you down and which modeling decisions mattered, then move on to the next exercise.
 
-Different companies use different assessments. If none of these fit the company you're targeting, research its process and ask an AI assistant to generate a similar exercise (a spec split into steps, a starter stub and tests) so you can prepare the same way.
+**If your target language is different,** ask an AI assistant to port an exercise: give it the step files and tests and ask for an empty starter stub plus equivalent tests in your language. Interview in the language you'll actually use.
 
 ## Where to start
 
@@ -25,7 +26,7 @@ Different companies use different assessments. If none of these fit the company 
 
 ## Exercises
 
-Each exercise has four steps, takes about 90 minutes and contains its own README with rules, commands and conventions. Read only the README and `step1.md` before you start, and reveal later steps one at a time.
+Each exercise has four steps, takes about 90 minutes and contains its own README with rules, commands and conventions. Exercises ship with an empty starter stub and tests only; no solutions are included. Read only the README and `step1.md` before you start, and reveal later steps one at a time.
 
 | Exercise | Language | Topics |
 |---|---|---|
