@@ -1,7 +1,0 @@
-module step4_tests
-
-use tests/step1
-use tests/step2
-use tests/step3
-use tests/step4
-

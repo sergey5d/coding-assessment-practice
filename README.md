@@ -35,8 +35,8 @@ Each exercise has four steps, takes about 90 minutes and contains its own README
 | [`cache-strategies`](cache-strategies/typescript) | TypeScript | LRU, LFU, TTL, TTL with LRU eviction |
 | [`cloud-storage`](cloud-storage/typescript) | TypeScript | Files, prefix search, per-user capacity, compression |
 | [`memory-database`](memory-database/typescript) | TypeScript | Records, scanning, timestamped TTL fields, backup and restore |
-| [`stream-aggregation`](stream-aggregation/typescript) | TypeScript, [Lume](stream-aggregation/lume) | Record parsing, rollups, ranking, voided records, time ranges |
-| [`worker-time-tracking`](worker-time-tracking/typescript) | TypeScript, [Lume](worker-time-tracking/lume) | Work sessions, rankings, delayed promotions, salary, overtime |
+| [`stream-aggregation`](stream-aggregation/typescript) | TypeScript | Record parsing, rollups, ranking, voided records, time ranges |
+| [`worker-time-tracking`](worker-time-tracking/typescript) | TypeScript | Work sessions, rankings, delayed promotions, salary, overtime |
 | [`concurrency`](concurrency/java) | Java | Counter map, bounded blocking queue, thread-safe LRU, single-flight cache |
 
 The Java exercise includes a `discussion.md` with follow-up questions for practicing the verbal part of an interview.
@@ -45,6 +45,5 @@ The Java exercise includes a `discussion.md` with follow-up questions for practi
 
 - **TypeScript:** Node.js 20 or newer. Run `npm install` inside the exercise folder.
 - **Java:** JDK 17 or newer.
-- **Lume:** the `lume` interpreter on your `PATH`, or set `LUME_BIN` to its path.
 
 Test failures are expected at the start of every exercise, because the starter code is intentionally empty.

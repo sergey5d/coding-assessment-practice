@@ -1,5 +1,0 @@
-module step2_tests
-
-use tests/step1
-use tests/step2
-
