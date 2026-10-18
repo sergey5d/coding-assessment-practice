@@ -1,0 +1,77 @@
+module step2
+
+use spec/*
+use src/record_aggregator/{RecordAggregator}
+use support/assessment_support/{expect_strings}
+
+class Step2DescendingTotalsSpec with Spec {
+    def it() Unit {
+        aggregator = RecordAggregator {}
+        aggregator.ingest("r1,1,alice,20")
+        aggregator.ingest("r2,2,bob,50")
+        aggregator.ingest("r3,3,carol,30")
+        expect_strings(aggregator.all_rollups(), ["bob(1,50)", "carol(1,30)", "alice(1,20)"])
+    }
+}
+
+class Step2KeyTieBreakSpec with Spec {
+    def it() Unit {
+        aggregator = RecordAggregator {}
+        aggregator.ingest("r1,1,zoe,20")
+        aggregator.ingest("r2,2,amy,20")
+        aggregator.ingest("r3,3,mike,20")
+        expect_strings(aggregator.all_rollups(), ["amy(1,20)", "mike(1,20)", "zoe(1,20)"])
+    }
+}
+
+class Step2FormattingSpec with Spec {
+    def it() Unit {
+        aggregator = RecordAggregator {}
+        aggregator.ingest("r1,1,alice,20")
+        aggregator.ingest("r2,2,alice,-5")
+        expect_strings(aggregator.all_rollups(), ["alice(2,15)"])
+    }
+}
+
+class Step2LimitSpec with Spec {
+    def it() Unit {
+        aggregator = RecordAggregator {}
+        aggregator.ingest("r1,1,alice,20")
+        aggregator.ingest("r2,2,bob,50")
+        aggregator.ingest("r3,3,carol,30")
+        expect_strings(aggregator.top_n(2), ["bob(1,50)", "carol(1,30)"])
+        expect_strings(aggregator.top_n(10), aggregator.all_rollups())
+    }
+}
+
+class Step2InvalidLimitSpec with Spec {
+    def it() Unit {
+        aggregator = RecordAggregator {}
+        expect_strings(aggregator.top_n(3), [])
+        aggregator.ingest("r1,1,alice,20")
+        expect_strings(aggregator.top_n(0), [])
+        expect_strings(aggregator.top_n(-1), [])
+    }
+}
+
+class Step2ZeroAndNegativeOrderingSpec with Spec {
+    def it() Unit {
+        aggregator = RecordAggregator {}
+        aggregator.ingest("r1,1,zero,0")
+        aggregator.ingest("r2,2,less,-20")
+        aggregator.ingest("r3,3,more,-5")
+        expect_strings(aggregator.all_rollups(), ["zero(1,0)", "more(1,-5)", "less(1,-20)"])
+    }
+}
+
+class Step2FreshResultsSpec with Spec {
+    def it() Unit {
+        aggregator = RecordAggregator {}
+        aggregator.ingest("r1,1,alice,20")
+        aggregator.ingest("r2,2,bob,10")
+        expect_strings(aggregator.top_n(1), ["alice(1,20)"])
+        aggregator.ingest("r3,3,bob,20")
+        expect_strings(aggregator.top_n(1), ["bob(2,30)"])
+    }
+}
+

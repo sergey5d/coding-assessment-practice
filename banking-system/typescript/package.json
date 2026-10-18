@@ -1,0 +1,20 @@
+{
+  "name": "account-balances-interview-practice",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "npm run test:step4",
+    "test:step1": "vitest run tests/step1.test.ts",
+    "test:step2": "vitest run tests/step1.test.ts tests/step2.test.ts",
+    "test:step3": "vitest run tests/step1.test.ts tests/step2.test.ts tests/step3.test.ts",
+    "test:step4": "vitest run tests/step1.test.ts tests/step2.test.ts tests/step3.test.ts tests/step4.test.ts",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.9.2",
+    "vitest": "^4.1.11"
+  }
+}

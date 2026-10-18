@@ -1,0 +1,7 @@
+module worker_time_tracker
+
+# Read README.md, then reveal one step file at a time.
+# Add each step's methods and their implementation to this class as you progress.
+
+class WorkerTimeTracker {
+}

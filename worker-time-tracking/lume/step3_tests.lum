@@ -1,0 +1,6 @@
+module step3_tests
+
+use tests/step1
+use tests/step2
+use tests/step3
+

@@ -1,0 +1,76 @@
+module step2
+
+use spec/*
+use src/worker_time_tracker/{WorkerTimeTracker}
+use support/assessment_support/{expect_strings}
+
+class Step2DescendingTimeSpec with Spec {
+    def it() Unit {
+        tracker = WorkerTimeTracker {}
+        tracker.add_worker("alice", "engineer", 10)
+        tracker.add_worker("bob", "engineer", 10)
+        tracker.add_worker("carol", "engineer", 10)
+        tracker.register("alice", 1)
+        tracker.register("alice", 11)
+        tracker.register("bob", 20)
+        tracker.register("bob", 35)
+        tracker.register("carol", 40)
+        tracker.register("carol", 45)
+        expect_strings(tracker.top_n_workers(3, "engineer"), ["bob(15)", "alice(10)", "carol(5)"])
+    }
+}
+
+class Step2WorkerIdTieSpec with Spec {
+    def it() Unit {
+        tracker = WorkerTimeTracker {}
+        tracker.add_worker("zoe", "engineer", 10)
+        tracker.add_worker("amy", "engineer", 10)
+        tracker.add_worker("mike", "engineer", 10)
+        tracker.register("zoe", 1)
+        tracker.register("zoe", 6)
+        tracker.register("amy", 10)
+        tracker.register("amy", 15)
+        tracker.register("mike", 20)
+        tracker.register("mike", 25)
+        expect_strings(tracker.top_n_workers(3, "engineer"), ["amy(5)", "mike(5)", "zoe(5)"])
+    }
+}
+
+class Step2PositionFilterSpec with Spec {
+    def it() Unit {
+        tracker = WorkerTimeTracker {}
+        tracker.add_worker("alice", "engineer", 10)
+        tracker.add_worker("bob", "designer", 10)
+        tracker.add_worker("carol", "engineer", 10)
+        tracker.register("alice", 1)
+        tracker.register("alice", 6)
+        tracker.register("bob", 10)
+        tracker.register("bob", 30)
+        expect_strings(tracker.top_n_workers(10, "engineer"), ["alice(5)", "carol(0)"])
+        expect_strings(tracker.top_n_workers(10, "designer"), ["bob(20)"])
+        expect_strings(tracker.top_n_workers(10, "manager"), [])
+    }
+}
+
+class Step2ZeroAndOpenSessionsSpec with Spec {
+    def it() Unit {
+        tracker = WorkerTimeTracker {}
+        tracker.add_worker("bob", "engineer", 10)
+        tracker.add_worker("alice", "engineer", 10)
+        tracker.register("bob", 20)
+        expect_strings(tracker.top_n_workers(2, "engineer"), ["alice(0)", "bob(0)"])
+    }
+}
+
+class Step2LimitSpec with Spec {
+    def it() Unit {
+        tracker = WorkerTimeTracker {}
+        tracker.add_worker("alice", "engineer", 10)
+        tracker.add_worker("bob", "engineer", 10)
+        tracker.add_worker("carol", "engineer", 10)
+        expect_strings(tracker.top_n_workers(2, "engineer"), ["alice(0)", "bob(0)"])
+        expect_strings(tracker.top_n_workers(0, "engineer"), [])
+        expect_strings(tracker.top_n_workers(-1, "engineer"), [])
+    }
+}
+
